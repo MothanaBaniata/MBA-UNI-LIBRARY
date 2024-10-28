@@ -3,6 +3,10 @@
 
 <head>
     @include('admin.head')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         .div_center {
             text-align: center;
@@ -30,7 +34,7 @@
         }
 
         tr {
-            border:  1px solid white;
+            border: 1px solid white;
             padding: 10px;
         }
     </style>
@@ -79,13 +83,15 @@
                         </tr>
 
                         @foreach ($data as $data)
+                            <tr>
+                                <td>{{ $data->cat_title }}</td>
+                                <td>
 
-                        <tr>
-                            <td>{{ $data->cat_title }}</td>
-                            <td>
-                                <a class="btn btn-danger" href="{{ url('cat_delete',$data->id) }}">Delete</a>
-                            </td>
-                        </tr>
+                                    <a class="btn btn-info" href="{{ url('edit_category', $data->id) }}">Update</a>
+                                    <a onclick="confirmation(event)" class="btn btn-danger"
+                                        href="{{ url('cat_delete', $data->id) }}">Delete</a>
+                                </td>
+                            </tr>
                         @endforeach
 
                     </table>
@@ -94,6 +100,26 @@
         </div>
 
         @include('admin.footer')
+
+        <script>
+            function confirmation(ev) {
+                ev.preventDefault();
+                var urlToRedirect = ev.currentTarget.getAttribute('href');
+                console.log(urlToRedirect);
+                swal({
+                        title: "Are you sure to Delete this",
+                        text: "You will not be able to revert this!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willCancel) => {
+                        if (willCancel) {
+                            window.location.href = urlToRedirect;
+                        }
+                    });
+            }
+        </script>
 </body>
 
 </html>

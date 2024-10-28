@@ -53,6 +53,23 @@ class AdminController extends Controller
         $data = Category::find($id);
 
         $data->delete();
-        return redirect()->back();
+        return redirect()->back()->with('message','Category Deleted Successfully');
     }
+
+    public function edit_category($id)
+    {
+        $data = Category::find($id);
+        return view('admin.edit_category',compact('data'));
+    }
+
+    public function update_category(Request $request, $id)
+    {
+        $data = Category::find($id);
+        $data->cat_title = $request->cat_name;
+        $data->save();
+        return redirect('/category_page')->with('message','Category Updated Successfully');
+    }
+
+
+
 }
