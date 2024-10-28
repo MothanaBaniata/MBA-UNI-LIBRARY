@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    @include('admin.head')
 </head>
 
 <body>
+    @include('admin.header')
 
 
-    <x-app-layout>
+    <div class="d-flex align-items-stretch">
+        <!-- Sidebar Navigation-->
+        @include('admin.sidebar')
+        <!-- Sidebar Navigation end-->
 
-    </x-app-layout>
+        @include('admin.body')
 
-    <h1>admin</h1>
-
+           @include('admin.footer')
 </body>
 
 </html>
