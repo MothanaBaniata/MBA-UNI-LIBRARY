@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 use App\Models\User;
@@ -35,7 +36,7 @@ class AdminController extends Controller
     {
         $data = Category::all();
 
-        return view('admin.category',compact('data'));
+        return view('admin.category', compact('data'));
     }
 
     public function add_category(Request $request)
@@ -45,7 +46,7 @@ class AdminController extends Controller
         $data->cat_title = $request->category;
 
         $data->save();
-        return redirect()->back()->with('message','Category Added Successfully');
+        return redirect()->back()->with('message', 'Category Added Successfully');
     }
 
     public function cat_delete($id)
@@ -53,13 +54,13 @@ class AdminController extends Controller
         $data = Category::find($id);
 
         $data->delete();
-        return redirect()->back()->with('message','Category Deleted Successfully');
+        return redirect()->back()->with('message', 'Category Deleted Successfully');
     }
 
     public function edit_category($id)
     {
         $data = Category::find($id);
-        return view('admin.edit_category',compact('data'));
+        return view('admin.edit_category', compact('data'));
     }
 
     public function update_category(Request $request, $id)
@@ -67,9 +68,52 @@ class AdminController extends Controller
         $data = Category::find($id);
         $data->cat_title = $request->cat_name;
         $data->save();
-        return redirect('/category_page')->with('message','Category Updated Successfully');
+        return redirect('/category_page')->with('message', 'Category Updated Successfully');
     }
 
+    public function add_book()
+    {
+        $data = Category::all();
+        return view('admin.add_book', compact('data'));
+    }
 
+    public function store_book(Request $request)
+    {
+        $data = new Book;
+        $data->title = $request->book_name;
 
+        $data->author_name = $request->price;
+
+        $data->price = $request->book_name;
+
+        $data->quantity = $request->quantity;
+
+        $data->description = $request->description;
+
+        $data->category_id = $request->category;
+
+        $book_image = $request->book_img;
+
+        $author_image = $request->author_img;
+
+        if ($book_image) {
+            $book_image_name = time() . '.' . $book_image->getClientOriginalExtension();
+
+            $request->book_img->move('book', $book_image_name);
+
+            $data->book_img = $book_image_name;
+        }
+
+        if ($author_image) {
+            $author_image_name = time() . '.' . $author_image->getClientOriginalExtension();
+
+            $request->author_img->move('author', $author_image_name);
+
+            $data->author_img = $author_image_name;
+        }
+
+        $data->save();
+
+        return redirect()->back();
+    }
 }
