@@ -25,7 +25,8 @@ class AdminController extends Controller
                 return view('admin.index');
             } else if ($user_type == 'user') {
 
-                return view('home.index');
+                $data = Book::all();
+                return view('home.index', compact('data'));
             }
         } else {
             return redirect()->back();
