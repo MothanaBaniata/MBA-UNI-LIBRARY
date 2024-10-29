@@ -4,6 +4,10 @@
 <head>
     @include('admin.head')
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <style>
         .table_center {
             text-align: center;
@@ -43,6 +47,14 @@
             <div class="page-header">
                 <div class="container-fluid">
 
+                    @if (session()->has('message'))
+                        <div class="alert alert-success">
+
+                            {{ session()->get('message') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                        </div>
+                    @endif
+
                     <div>
                         <table class="table_center">
                             <tr>
@@ -54,6 +66,7 @@
                                 <th>Category</th>
                                 <th>Author Image</th>
                                 <th>Book Image</th>
+                                <th>Delete</th>
                             </tr>
 
                             @foreach ($book as $book)
@@ -70,6 +83,11 @@
                                     <td>
                                         <img class="img_book" src="book/{{ $book->book_img }}" alt="">
                                     </td>
+
+                                    <td>
+                                        <a onclick="confirmation(event)" class="btn btn-danger"
+                                            href="{{ url('book_delete', $book->id) }}">Delete</a>
+                                    </td>
                                 </tr>
                             @endforeach
 
@@ -82,6 +100,26 @@
 
 
         @include('admin.footer')
+
+        <script>
+            function confirmation(ev) {
+                ev.preventDefault();
+                var urlToRedirect = ev.currentTarget.getAttribute('href');
+                console.log(urlToRedirect);
+                swal({
+                        title: "Are you sure to Delete this",
+                        text: "You will not be able to revert this!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willCancel) => {
+                        if (willCancel) {
+                            window.location.href = urlToRedirect;
+                        }
+                    });
+            }
+        </script>
 </body>
 
 </html>
