@@ -17,8 +17,7 @@
                     class="icon-windows"></i>Books </a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                 <li><a href="{{ url('add_book') }}">Add Book</a></li>
-                <li><a href="#">Page</a></li>
-                <li><a href="#">Page</a></li>
+                <li><a href="{{ url('show_book') }}">Show Books</a></li>
             </ul>
         </li>
         <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>

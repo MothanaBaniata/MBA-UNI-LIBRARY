@@ -116,4 +116,10 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+
+    public function show_book()
+    {
+        $book = Book::all();
+        return view('admin.show_book', compact('book'));
+    }
 }
