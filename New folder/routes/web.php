@@ -57,3 +57,5 @@ Route::post('/update_book/{id}', [AdminController::class, 'update_book']);
 Route::get('/book_details/{id}', [HomeController::class, 'book_details']);
 
 Route::get('/borrow_books/{id}', [HomeController::class, 'borrow_books']);
+
+Route::get('/borrow_request', [AdminController::class, 'borrow_request']);

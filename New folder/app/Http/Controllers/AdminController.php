@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
 use Illuminate\Http\Request;
 
+use App\Models\Book;
+
 use App\Models\User;
+
+use App\Models\Borrow;
 
 use App\Models\Category;
 
@@ -180,5 +183,13 @@ class AdminController extends Controller
 
         $data->save();
         return redirect('/show_book')->with('message', 'Book Updated Successfully');
+    }
+
+    public function borrow_request()
+    {
+
+        $data = Borrow::all();
+
+        return view('admin.borrow_request', compact('data'));
     }
 }
