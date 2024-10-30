@@ -70,7 +70,7 @@
                                         <span style="color: yellow">{{ $data->status }}</span>
                                     @endif
 
-                                    @if ($data->status == 'Applied')
+                                    @if ($data->status == 'applied')
                                         <span style="color: white">{{ $data->status }}</span>
                                     @endif
 

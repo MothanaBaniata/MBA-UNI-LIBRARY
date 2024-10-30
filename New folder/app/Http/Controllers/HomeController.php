@@ -54,7 +54,7 @@ class HomeController extends Controller
 
                 $borrow->user_id = $user_id;
 
-                $borrow->status = 'Applied';
+                $borrow->status = 'applied';
 
                 $borrow->save();
 
@@ -77,5 +77,14 @@ class HomeController extends Controller
 
             return view('home.book_history', compact('data'));
         }
+    }
+
+    public function cancel_req($id)
+    {
+        $data = Borrow::find($id);
+
+        $data->delete();
+
+        return redirect()->back()->with('message', 'Book Borrow request canceled successfully');
     }
 }
