@@ -29,7 +29,6 @@ class HomeController extends Controller
         $data = Book::find($id);
 
         return view('home.book_details', compact('data'));
-
     }
 
 
@@ -43,12 +42,9 @@ class HomeController extends Controller
 
         $quantity = $data->quantity;
 
-        if($quantity >= '1')
-        {
+        if ($quantity >= '1') {
 
-            if(Auth::id())
-
-            {
+            if (Auth::id()) {
 
                 $user_id = Auth::user()->id;
 
@@ -63,23 +59,23 @@ class HomeController extends Controller
                 $borrow->save();
 
                 return redirect()->back()->with('message', 'A request send to admin to borrow this book');
-            }
-
-
-            else
-
-            {
+            } else {
                 return redirect('/login');
             }
-
-
-        }
-
-
-        else
-        {
+        } else {
             return redirect()->back()->with('message', 'Not Enough Book Available');
         }
+    }
 
+    public function book_history()
+    {
+
+        if (Auth::id()) {
+            $userid = Auth::user()->id;
+
+            $data = Borrow::where('user_id', '=', $userid)->get();
+
+            return view('home.book_history', compact('data'));
+        }
     }
 }

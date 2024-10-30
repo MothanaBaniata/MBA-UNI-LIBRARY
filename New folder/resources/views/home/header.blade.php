@@ -27,13 +27,16 @@
                         <li><a href="index.html" class="active">Home</a></li>
                         <li><a href="explore.html">Explore</a></li>
                         <li><a href="details.html">Item Details</a></li>
-                        <li><a href="author.html">Author</a></li>
                         <li><a href="create.html">Create Yours</a></li>
 
 
                         @if (Route::has('login'))
 
                             @auth
+
+                            <li>
+                                <a href="{{ url('book_history') }}">My history</a>
+                            </li>
 
                                 <x-app-layout>
                                 </x-app-layout>
