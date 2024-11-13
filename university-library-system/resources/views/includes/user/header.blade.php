@@ -34,6 +34,7 @@
                         Edu Meeting
                     </a>
                     <!-- ***** Logo End ***** -->
+
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
@@ -48,14 +49,56 @@
                         </li>
                         <li class="scroll-to-section"><a href="#courses">Courses</a></li>
                         <li class="scroll-to-section"><a href="#contact">Contact Us</a></li>
+
+                        <!-- ***** Authentication Section Start ***** -->
+                        @if (Route::has('login'))
+                            @auth
+                                <!-- User is authenticated -->
+                                <li class="scroll-to-section dropdown">
+                                    <a id="navbarDropdown" class="scroll-to-section dropdown-toggle" href="#"
+                                        role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ Auth::user()->name }}
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <!-- My Profile Link -->
+                                        <a class="dropdown-item" href="{{ route('logout') }}">
+                                            My Profile
+                                        </a>
+                                        <!-- Logout Link -->
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @else
+                                <!-- User is not authenticated -->
+                                <li class="nav-item">
+                                    <a class="scroll-to-section" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                                @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a class="scroll-to-section" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    </li>
+                                @endif
+                            @endauth
+                        @endif
+                        <!-- ***** Authentication Section End ***** -->
                     </ul>
+                    <!-- ***** Menu End ***** -->
+
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>
-                    <!-- ***** Menu End ***** -->
                 </nav>
             </div>
         </div>
     </div>
 </header>
 <!-- ***** Header Area End ***** -->
+
+

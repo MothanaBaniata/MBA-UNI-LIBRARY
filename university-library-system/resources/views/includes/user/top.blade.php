@@ -16,3 +16,4 @@
 <link rel="stylesheet" href="{{ asset('user-assets/css/templatemo-edu-meeting.css') }}">
 <link rel="stylesheet" href="{{ asset('user-assets/css/owl.css') }}">
 <link rel="stylesheet" href="{{ asset('user-assets/css/lightbox.css') }}">
+
