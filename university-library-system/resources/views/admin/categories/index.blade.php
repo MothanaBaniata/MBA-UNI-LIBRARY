@@ -14,6 +14,7 @@
                         <table class="display table table-striped table-hover">
                             <thead>
                                 <tr>
+                                    <th>Image</th>  <!-- New column for Image -->
                                     <th>Name</th>
                                     <th>Number of Books</th>
                                     <th>Actions</th>
@@ -22,6 +23,13 @@
                             <tbody>
                                 @foreach($categories as $category)
                                 <tr>
+                                    <td>
+                                        @if($category->image)
+                                        <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}" width="50" class="img-thumbnail">
+                                        @else
+                                        <span>No image</span>
+                                        @endif
+                                    </td>
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->books_count }}</td>  <!-- Display the number of books in this category -->
                                     <td>

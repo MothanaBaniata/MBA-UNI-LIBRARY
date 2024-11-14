@@ -18,6 +18,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => fake()->unique()->word(),
+            'image' => 'categories/' . fake()->imageUrl(400, 400, 'nature', true),
         ];
     }
 }

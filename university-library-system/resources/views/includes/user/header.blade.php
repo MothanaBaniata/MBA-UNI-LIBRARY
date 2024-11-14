@@ -30,25 +30,26 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
+                    <a href="{{ url('/') }}" class="logo">
                         University Library
                     </a>
                     <!-- ***** Logo End ***** -->
 
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-                        <li><a href="meetings.html">Meetings</a></li>
-                        <li class="scroll-to-section"><a href="#apply">Apply Now</a></li>
                         <li class="has-sub">
-                            <a href="javascript:void(0)">Pages</a>
+                            <a href="javascript:void(0)">Categories</a>
                             <ul class="sub-menu">
-                                <li><a href="meetings.html">Upcoming Meetings</a></li>
-                                <li><a href="meeting-details.html">Meeting Details</a></li>
+                                <li><a href="#">Categories</a></li>
+                                <li><a href="#">Single page</a></li>
                             </ul>
                         </li>
-                        <li class="scroll-to-section"><a href="#courses">Courses</a></li>
-                        <li class="scroll-to-section"><a href="#contact">Contact Us</a></li>
+                        <li class="scroll-to-section"><a href="#books">Books</a></li>
+                        <li><a href="#">About</a></li>
+                        <li class="scroll-to-section"><a href="#apply">Apply Now</a></li>
+                        <li class=""><a href="{{ route('contact.show') }}">Contact Us</a></li>
+
+
 
                         <!-- ***** Authentication Section Start ***** -->
                         @if (Route::has('login'))
@@ -82,7 +83,8 @@
                                 </li>
                                 @if (Route::has('register'))
                                     <li class="nav-item">
-                                        <a class="scroll-to-section" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        <a class="scroll-to-section"
+                                            href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
                                 @endif
                             @endauth

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -27,10 +28,19 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:categories,name',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate image file
         ]);
 
+        // Handle image upload if present
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('categories', 'public'); // Save in public/categories folder
+        }
+
+        
         Category::create([
             'name' => $request->name,
+            'image' => $imagePath, // Save the image path to the database
         ]);
 
         return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
@@ -55,9 +65,24 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:categories,name,' . $id,
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate image file
         ]);
 
         $category = Category::findOrFail($id);
+
+        // Handle the image upload if present
+        if ($request->hasFile('image')) {
+            // Delete the old image from storage if it exists
+            if ($category->image && Storage::exists('public/' . $category->image)) {
+                Storage::delete('public/' . $category->image);
+            }
+
+            // Store the new image
+            $imagePath = $request->file('image')->store('categories', 'public');
+            $category->image = $imagePath; // Update the image path
+        }
+
+        // Update the category name (and image if uploaded)
         $category->update([
             'name' => $request->name,
         ]);
@@ -69,6 +94,12 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
+
+        // Delete the image if it exists
+        if ($category->image && Storage::exists('public/' . $category->image)) {
+            Storage::delete('public/' . $category->image);
+        }
+
         $category->delete();
 
         return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');

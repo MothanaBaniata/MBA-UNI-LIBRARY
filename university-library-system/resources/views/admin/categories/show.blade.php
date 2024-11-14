@@ -5,10 +5,20 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Category: {{ $category->name }}</h4>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title mb-0">Category: {{ $category->name }}</h4>
+                    <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-warning btn-sm">Edit Category</a>
                 </div>
                 <div class="card-body">
+                    <!-- Display Category Image -->
+                    <div class="mb-4">
+                        @if($category->image)
+                            <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}" width="150" class="img-thumbnail">
+                        @else
+                            <span>No image available</span>
+                        @endif
+                    </div>
+
                     <h5>Books in this Category:</h5>
                     <div class="table-responsive">
                         <table class="display table table-striped table-hover">

@@ -20,52 +20,34 @@ use App\Http\Controllers\User\UserContactController;
 |
 */
 
-Route::get('/', function () {
-    return view('user/home');
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-Route::get('/landing', function () {
-    return view('user/home');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 Route::get('/admin', function () {
     return view('admin/index');
 });
 
-
-
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('users', UserController::class);
 });
-
-
 
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('categories', CategoryController::class);
 });
 
-
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('books', BookController::class);
 });
-
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('borrowings', BorrowingController::class);
 });
 
-
-
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
-
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('contacts', ContactController::class)->only(['index', 'show', 'destroy']);
