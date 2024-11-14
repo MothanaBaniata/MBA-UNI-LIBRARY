@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\User\UserContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,11 +61,16 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 });
 
 
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-    Route::resource('contacts', ContactController::class)->only(['index', 'show', 'destroy']);
-});
-
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
+
+
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::resource('contacts', ContactController::class)->only(['index', 'show', 'destroy']);
+});
+
+//user side contact
+Route::get('/contact', [UserContactController::class, 'showForm'])->name('contact.show');
+Route::post('/contact', [UserContactController::class, 'store'])->name('contact.store');

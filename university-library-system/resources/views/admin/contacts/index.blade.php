@@ -19,6 +19,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>Subject</th>  <!-- New Subject Column -->
                                     <th>Message</th>
                                     <th>Received At</th>
                                     <th>Actions</th>
@@ -29,6 +30,7 @@
                                     <tr>
                                         <td>{{ $contact->name }}</td>
                                         <td>{{ $contact->email }}</td>
+                                        <td>{{ $contact->subject }}</td> <!-- Display Subject -->
                                         <td>{{ Str::limit($contact->message, 50) }}</td>
                                         <td>{{ $contact->created_at->format('Y-m-d H:i') }}</td>
                                         <td>
