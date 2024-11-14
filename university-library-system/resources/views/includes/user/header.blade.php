@@ -31,7 +31,7 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-                        Edu Meeting
+                        University Library
                     </a>
                     <!-- ***** Logo End ***** -->
 
@@ -100,5 +100,3 @@
     </div>
 </header>
 <!-- ***** Header Area End ***** -->
-
-

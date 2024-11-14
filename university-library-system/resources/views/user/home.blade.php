@@ -15,21 +15,21 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="caption">
-                                <h6>Hello Students</h6>
-                                <h2>Welcome to Education</h2>
-                                <p>This is an edu meeting HTML CSS template provided by <a rel="nofollow"
-                                        href="https://templatemo.com/page/1" target="_blank">TemplateMo website</a>. This is
-                                    a Bootstrap v5.1.3 layout. The video background is taken from Pexels website, a group of
-                                    young people by <a rel="nofollow" href="https://www.pexels.com/@pressmaster"
-                                        target="_blank">Pressmaster</a>.</p>
+                                <h6>Welcome Students!</h6>
+                                <h2>Your University Library Awaits</h2>
+                                <p>Explore a wide range of academic resources, borrow the books you need, and enhance your
+                                    learning experience. Our library system gives you easy access to textbooks, research
+                                    papers, and more. Dive into our collection and find the materials that will help you
+                                    succeed in your studies.</p>
                                 <div class="main-button-red">
-                                    <div class="scroll-to-section"><a href="#contact">Join Us Now!</a></div>
+                                    <div class="scroll-to-section"><a href="#books">Browse Our Collection</a></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </section>
         <!-- ***** Main Banner Area End ***** -->
 
@@ -44,9 +44,8 @@
                                     <img src="user-assets/images/service-icon-01.png" alt="">
                                 </div>
                                 <div class="down-content">
-                                    <h4>Best Education</h4>
-                                    <p>Suspendisse tempor mauris a sem elementum bibendum. Praesent facilisis massa non
-                                        vestibulum.</p>
+                                    <h4>Book Collection</h4>
+                                    <p>We provide a wide range of books for your academic needs.</p>
                                 </div>
                             </div>
 
@@ -55,9 +54,8 @@
                                     <img src="user-assets/images/service-icon-02.png" alt="">
                                 </div>
                                 <div class="down-content">
-                                    <h4>Best Teachers</h4>
-                                    <p>Suspendisse tempor mauris a sem elementum bibendum. Praesent facilisis massa non
-                                        vestibulum.</p>
+                                    <h4>Online Catalog</h4>
+                                    <p>Access our library's full catalog online and find books easily.</p>
                                 </div>
                             </div>
 
@@ -66,9 +64,8 @@
                                     <img src="user-assets/images/service-icon-03.png" alt="">
                                 </div>
                                 <div class="down-content">
-                                    <h4>Best Students</h4>
-                                    <p>Suspendisse tempor mauris a sem elementum bibendum. Praesent facilisis massa non
-                                        vestibulum.</p>
+                                    <h4>Book Borrowing</h4>
+                                    <p>Borrow books online and have them delivered to your campus or library.</p>
                                 </div>
                             </div>
 
@@ -77,9 +74,8 @@
                                     <img src="user-assets/images/service-icon-02.png" alt="">
                                 </div>
                                 <div class="down-content">
-                                    <h4>Online Meeting</h4>
-                                    <p>Suspendisse tempor mauris a sem elementum bibendum. Praesent facilisis massa non
-                                        vestibulum.</p>
+                                    <h4>Student Access</h4>
+                                    <p>All students have easy access to the library's resources through their accounts.</p>
                                 </div>
                             </div>
 
@@ -88,9 +84,8 @@
                                     <img src="user-assets/images/service-icon-03.png" alt="">
                                 </div>
                                 <div class="down-content">
-                                    <h4>Best Networking</h4>
-                                    <p>Suspendisse tempor mauris a sem elementum bibendum. Praesent facilisis massa non
-                                        vestibulum.</p>
+                                    <h4>Research Assistance</h4>
+                                    <p>Get help with research and find relevant materials through our support services.</p>
                                 </div>
                             </div>
 
@@ -99,6 +94,7 @@
                 </div>
             </div>
         </section>
+
 
         <section class="upcoming-meetings" id="meetings">
             <div class="container">
@@ -646,77 +642,7 @@
             </div>
         </section>
     </div>
-    <section class="contact-us" id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-9 align-self-center">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <form id="contact" action="" method="post">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <h2>Let's get in touch</h2>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <fieldset>
-                                            <input name="name" type="text" id="name"
-                                                placeholder="YOURNAME...*" required="">
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <fieldset>
-                                            <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*"
-                                                placeholder="YOUR EMAIL..." required="">
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <fieldset>
-                                            <input name="subject" type="text" id="subject"
-                                                placeholder="SUBJECT...*" required="">
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <fieldset>
-                                            <textarea name="message" type="text" class="form-control" id="message" placeholder="YOUR MESSAGE..."
-                                                required=""></textarea>
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <fieldset>
-                                            <button type="submit" id="form-submit" class="button">SEND MESSAGE
-                                                NOW</button>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="right-info">
-                        <ul>
-                            <li>
-                                <h6>Phone Number</h6>
-                                <span>010-020-0340</span>
-                            </li>
-                            <li>
-                                <h6>Email Address</h6>
-                                <span>info@meeting.edu</span>
-                            </li>
-                            <li>
-                                <h6>Street Address</h6>
-                                <span>Rio de Janeiro - RJ, 22795-008, Brazil</span>
-                            </li>
-                            <li>
-                                <h6>Website URL</h6>
-                                <span>www.meeting.edu</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 @endsection
 
 @section('scripts')
