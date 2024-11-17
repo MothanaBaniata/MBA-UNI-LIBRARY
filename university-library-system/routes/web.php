@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\User\UserBookController;
+use App\Http\Controllers\User\UserCategoryController;
 use App\Http\Controllers\User\UserContactController;
 
 /*
@@ -62,3 +64,18 @@ Route::post('/contact', [UserContactController::class, 'store'])->name('contact.
 Route::get('/about', function () {
     return view('user/about');
 });
+
+
+//categories
+// Route::get('/categories', function () {
+//     return view('user/categories');
+// });
+
+
+// User routes
+Route::prefix('user')->name('user.')->group(function () {
+    Route::get('/categories', [UserCategoryController::class, 'index'])->name('categories');
+});
+
+
+Route::get('/book/{id}', [UserBookController::class, 'show'])->name('user.book.show');

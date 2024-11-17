@@ -40,7 +40,7 @@
                         <li class="has-sub">
                             <a href="javascript:void(0)">Categories</a>
                             <ul class="sub-menu">
-                                <li><a href="#">Categories</a></li>
+                                <li><a href="{{ route('user.categories') }}">Categories</a></li>
                                 <li><a href="#">Single page</a></li>
                             </ul>
                         </li>
