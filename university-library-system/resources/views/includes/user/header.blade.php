@@ -45,7 +45,7 @@
                             </ul>
                         </li>
                         <li class="scroll-to-section"><a href="#books">Books</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a href="{{ url('about') }}">About</a></li>
                         <li class="scroll-to-section"><a href="#apply">Apply Now</a></li>
                         <li class=""><a href="{{ route('contact.show') }}">Contact Us</a></li>
 

@@ -17,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');  // Remove this line if you want the home page to be public
+        $this->middleware('auth');  // Remove this line if you want the home page to be public
     }
 
     /**

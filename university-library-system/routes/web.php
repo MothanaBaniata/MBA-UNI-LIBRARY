@@ -56,3 +56,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 //user side contact
 Route::get('/contact', [UserContactController::class, 'showForm'])->name('contact.show');
 Route::post('/contact', [UserContactController::class, 'store'])->name('contact.store');
+
+
+//about pgae
+Route::get('/about', function () {
+    return view('user/about');
+});
