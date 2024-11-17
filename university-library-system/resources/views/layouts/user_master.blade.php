@@ -19,11 +19,11 @@
 
 
     <!-- Include footer -->
-    <section class="contact-us" id="contact">
+    {{-- <section class="contact-us" id="contact"> --}}
 
-        @include('includes.user.footer')
+    @include('includes.user.footer')
 
-    </section>
+    {{-- </section> --}}
 
 
     <!-- Include bottom scripts -->
