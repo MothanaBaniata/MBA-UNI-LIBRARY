@@ -140,7 +140,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ url('/landing') }}">
+                    <a href="{{ url('/') }}">
                         <i class="fas fa-home"></i>
                         <p>Back to Landing Page</p>
                     </a>

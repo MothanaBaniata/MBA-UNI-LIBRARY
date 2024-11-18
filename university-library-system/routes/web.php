@@ -11,71 +11,52 @@ use App\Http\Controllers\User\UserBookController;
 use App\Http\Controllers\User\UserCategoryController;
 use App\Http\Controllers\User\UserContactController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-Route::get('/admin', function () {
-    return view('admin/index');
+/****************** Admin routes start ******************/
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.role'])->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 });
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.role'])->group(function () {
     Route::resource('users', UserController::class);
 });
 
-Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.role'])->group(function () {
     Route::resource('categories', CategoryController::class);
 });
 
-Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.role'])->group(function () {
     Route::resource('books', BookController::class);
 });
 
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.role'])->group(function () {
     Route::resource('borrowings', BorrowingController::class);
 });
 
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
-
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.role'])->group(function () {
     Route::resource('contacts', ContactController::class)->only(['index', 'show', 'destroy']);
 });
+/****************** Admin routes end ******************/
 
-//user side contact
+
+/****************** User routes start ******************/
 Route::get('/contact', [UserContactController::class, 'showForm'])->name('contact.show');
 Route::post('/contact', [UserContactController::class, 'store'])->name('contact.store');
 
 
-//about pgae
 Route::get('/about', function () {
     return view('user/about');
 });
 
-
-//categories
-// Route::get('/categories', function () {
-//     return view('user/categories');
-// });
-
-
-// User routes
 Route::prefix('user')->name('user.')->group(function () {
     Route::get('/categories', [UserCategoryController::class, 'index'])->name('categories');
 });
 
 
 Route::get('/book/{id}', [UserBookController::class, 'show'])->name('user.book.show');
+/****************** User routes end ******************/
+

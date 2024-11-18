@@ -17,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');  // Remove this line if you want the home page to be public
+        //
     }
 
     /**
@@ -27,16 +27,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // Get the required statistics from the models
-        $totalUsers = User::count();  // Total registered users (students)
-        $totalBooks = Book::count();  // Total books in the library
-        $totalCategories = Category::count();  // Total book categories
-        $totalBorrowings = Borrowing::count();  // Total borrowings/transactions
+        $totalUsers = User::count();
+        $totalBooks = Book::count();
+        $totalCategories = Category::count();
+        $totalBorrowings = Borrowing::count();
 
         // Fetch the first 10 books
-        $books = Book::take(10)->get();  // Fetch the first 10 books
+        $books = Book::take(10)->get();
 
-        // Pass the data to the view
         return view('user.home', compact('totalUsers', 'totalBooks', 'totalCategories', 'totalBorrowings', 'books'));
     }
 }
