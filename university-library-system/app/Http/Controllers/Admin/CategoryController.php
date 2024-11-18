@@ -37,7 +37,7 @@ class CategoryController extends Controller
             $imagePath = $request->file('image')->store('categories', 'public'); // Save in public/categories folder
         }
 
-        
+
         Category::create([
             'name' => $request->name,
             'image' => $imagePath, // Save the image path to the database
