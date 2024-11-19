@@ -10,7 +10,7 @@ class CheckAdminRole
 {
     public function handle(Request $request, Closure $next)
     {
-        // Check if the user is authenticated and has the correct role
+        
         if (auth()->check() && in_array(auth()->user()->role, ['admin', 'superadmin'])) {
             return $next($request);
         }

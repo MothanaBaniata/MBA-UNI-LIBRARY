@@ -21,10 +21,9 @@
     <!-- Include footer -->
     <section class="contact-us" id="contact">
 
-    @include('includes.user.footer')
+        @include('includes.user.footer')
 
     </section>
-
 
     <!-- Include bottom scripts -->
     @include('includes.user.bottom')

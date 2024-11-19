@@ -10,7 +10,11 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        if (auth()->user()->role === 'superadmin') {
+            $users = User::where('role', 'student')->get();
+        } else {
+            $users = User::where('role', 'student')->get();
+        }
         return view('admin.users.index', compact('users'));
     }
 
@@ -21,21 +25,21 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:superadmin,admin,student',
         ]);
 
+        // Create a student
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role' => $request->role,
+            'role' => 'student',
         ]);
 
-        return redirect()->route('admin.users.index')->with('success', 'User created successfully');
+        return redirect()->route('admin.users.index')->with('success', 'Student created successfully');
     }
 
     public function show($id)
@@ -47,6 +51,11 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+
+        // Ensure admins can only edit students
+        if (auth()->user()->role === 'admin' && $user->role !== 'student') {
+            return redirect()->route('admin.users.index')->with('error', 'You cannot edit this user');
+        }
         return view('admin.users.edit', compact('user'));
     }
 
@@ -54,26 +63,40 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
+        if (auth()->user()->role === 'admin' && in_array($request->role, ['admin', 'superadmin'])) {
+            return redirect()->route('admin.users.index')->with('error', 'You cannot assign admin or superadmin roles');
+        }
+
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:8|confirmed',
-            'role' => 'required|in:superadmin,admin,student',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:8|confirmed', // Validate password confirmation
+            'role' => auth()->user()->role === 'admin' ? 'required|in:student' : 'required|in:superadmin,admin,student',
         ]);
 
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password ? bcrypt($request->password) : $user->password,
-            'role' => $request->role,
-        ]);
+        // Update user details
+        $user->name = $request->name;
+        $user->email = $request->email;
 
+        // Update password only if provided
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->password);
+        }
+
+        $user->role = $request->role;
+        $user->save();
         return redirect()->route('admin.users.index')->with('success', 'User updated successfully');
     }
 
     public function destroy($id)
     {
-        User::findOrFail($id)->delete();
-        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully');
+
+        $user = User::findOrFail($id);
+        if (auth()->user()->role === 'admin' && in_array($user->role, ['admin', 'superadmin'])) {
+            return redirect()->route('admin.users.index')->with('error', 'You cannot delete this user');
+        }
+        $user->delete();
+
+        return redirect()->route('admin.users.index')->with('success', 'Student deleted successfully');
     }
 }
