@@ -41,24 +41,46 @@
                     </div>
                 </li>
 
-
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#users" class="collapsed" aria-expanded="false">
-                        <i class="fas fa-user"></i>
-                        <p>Users</p>
+                    <a data-bs-toggle="collapse" href="#students" class="collapsed" aria-expanded="false">
+                        <i class="fas fa-user-graduate"></i>
+                        <p>Students</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="users">
+                    <div class="collapse" id="students">
                         <ul class="nav nav-collapse">
-                            <!-- Manage Users -->
-                            <li><a href="{{ route('admin.users.index') }}"><span class="sub-item">Manage Users</span></a></li>
+                            <!-- Manage Students -->
+                            <li><a href="{{ route('admin.users.index') }}"><span class="sub-item">Manage
+                                        Students</span></a></li>
 
-                            <!-- Add New User -->
-                            <li><a href="{{ route('admin.users.create') }}"><span class="sub-item">Add New User</span></a></li>
+                            <!-- Add New Student -->
+                            <li><a href="{{ route('admin.users.create') }}"><span class="sub-item">Add New
+                                        Student</span></a></li>
                         </ul>
                     </div>
                 </li>
 
+                @if (auth()->user()->role === 'superadmin')
+                    <!-- Only show for superadmins -->
+                    <li class="nav-item">
+                        <a data-bs-toggle="collapse" href="#admins" class="collapsed" aria-expanded="false">
+                            <i class="fas fa-user-shield"></i>
+                            <p>Admins</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="admins">
+                            <ul class="nav nav-collapse">
+                                <!-- Manage Admins -->
+                                <li><a href="{{ route('admin.manage.admins') }}"><span class="sub-item">Manage
+                                            Admins</span></a></li>
+
+                                <!-- Add New Admin -->
+                                <li><a href="{{ route('admin.manage.admins.create') }}"><span class="sub-item">Add New
+                                            Admin</span></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
 
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#categories" class="collapsed" aria-expanded="false">
@@ -68,12 +90,13 @@
                     </a>
                     <div class="collapse" id="categories">
                         <ul class="nav nav-collapse">
-                            <li><a href="{{ route('admin.categories.index') }}"><span class="sub-item">Manage Categories</span></a></li>
-                            <li><a href="{{ route('admin.categories.create') }}"><span class="sub-item">Add New Category</span></a></li>
+                            <li><a href="{{ route('admin.categories.index') }}"><span class="sub-item">Manage
+                                        Categories</span></a></li>
+                            <li><a href="{{ route('admin.categories.create') }}"><span class="sub-item">Add New
+                                        Category</span></a></li>
                         </ul>
                     </div>
                 </li>
-
 
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#books" class="collapsed" aria-expanded="false">
@@ -98,7 +121,6 @@
                         </ul>
                     </div>
                 </li>
-
 
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#borrowings" class="collapsed" aria-expanded="false">
@@ -146,17 +168,23 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ route('admin.profile') }}">
+                        <i class="fas fa-user"></i>
+                        <p>My Profile</p>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a>
-                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                        @csrf
-                        <button type="submit" class="btn btn-link">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <p>Logout</p>
-                        </button>
-                    </form>
-                </a>
+                        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-link">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <p>Logout</p>
+                            </button>
+                        </form>
+                    </a>
                 </li>
 
             </ul>

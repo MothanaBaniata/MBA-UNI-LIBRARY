@@ -12,7 +12,6 @@
                     <ul>
                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                     </ul>
                 </div>
@@ -20,8 +19,6 @@
         </div>
     </div>
 </div>
-
-
 
 <!-- ***** Header Area Start ***** -->
 <header class="header-area header-sticky">
@@ -37,34 +34,39 @@
 
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="has-sub">
+                        {{-- <li class="has-sub">
                             <a href="javascript:void(0)">Categories</a>
                             <ul class="sub-menu">
                                 <li><a href="{{ route('user.categories') }}">Categories</a></li>
                                 <li><a href="#">Single page</a></li>
                             </ul>
-                        </li>
-                        <li class="scroll-to-section"><a href="#books">Books</a></li>
+                        </li> --}}
+                        <li><a href="{{ route('user.categories') }}">Categories</a></li>
                         <li><a href="{{ url('about') }}">About</a></li>
-                        <li class="scroll-to-section"><a href="#apply">Apply Now</a></li>
                         <li class=""><a href="{{ route('contact.show') }}">Contact Us</a></li>
-
-
 
                         <!-- ***** Authentication Section Start ***** -->
                         @if (Route::has('login'))
                             @auth
                                 <!-- User is authenticated -->
-                                <li class="scroll-to-section dropdown">
-                                    <a id="navbarDropdown" class="scroll-to-section dropdown-toggle" href="#"
-                                        role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <li class="dropdown">
+                                    <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         {{ Auth::user()->name }}
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <!-- My Profile Link -->
-                                        <a class="dropdown-item" href="{{ route('logout') }}">
-                                            My Profile
-                                        </a>
+                                        <!-- Conditional Menu Items -->
+                                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'superadmin')
+                                            <!-- Admin Dashboard Link -->
+                                            <a class="dropdown-item" href="{{ url('/admin') }}">
+                                                Admin Dashboard
+                                            </a>
+                                        @else
+                                            <!-- Regular User Profile Link -->
+                                            <a class="dropdown-item" href="{{ route('profile') }}">
+                                                My Profile
+                                            </a>
+                                        @endif
                                         <!-- Logout Link -->
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -83,8 +85,7 @@
                                 </li>
                                 @if (Route::has('register'))
                                     <li class="nav-item">
-                                        <a class="scroll-to-section"
-                                            href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        <a class="" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
                                 @endif
                             @endauth
