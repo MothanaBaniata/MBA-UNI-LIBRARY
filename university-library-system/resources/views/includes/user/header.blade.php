@@ -28,7 +28,7 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{{ url('/') }}" class="logo">
-                        University Library
+                        Library
                     </a>
                     <!-- ***** Logo End ***** -->
 
@@ -81,11 +81,11 @@
                             @else
                                 <!-- User is not authenticated -->
                                 <li class="nav-item">
-                                    <a class="scroll-to-section" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="cta-button" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                                 @if (Route::has('register'))
                                     <li class="nav-item">
-                                        <a class="" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        <a class="cta-button" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
                                 @endif
                             @endauth

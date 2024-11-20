@@ -16,7 +16,7 @@
     </section>
 
     <section class="meetings-page" id="meetings">
-        <div class="container">
+        <div class="container pb-5">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="filters">

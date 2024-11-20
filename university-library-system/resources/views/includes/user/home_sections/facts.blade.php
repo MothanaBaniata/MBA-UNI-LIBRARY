@@ -32,8 +32,8 @@
                             </div>
                             <div class="col-12">
                                 <div class="count-area-content">
-                                    <div class="count-digit">{{ $totalBorrowings }}</div>
-                                    <div class="count-title">Total Borrowings</div>
+                                    <div class="count-digit">{{ $totalBorrowingsThisMonth }}</div>
+                                    <div class="count-title">Total Borrowings This Month</div>
                                 </div>
                             </div>
                         </div>
@@ -42,9 +42,10 @@
             </div>
             <div class="col-lg-6 align-self-center">
                 <div class="video">
-                    <a href="https://www.youtube.com/watch?v=HndV87XpkWg" target="_blank">
-                        <img src="user-assets/images/play-icon.png" alt="">
-                    </a>
+                    <video width="100%" controls>
+                        <source src="{{ asset('user-assets/images/facts.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </div>

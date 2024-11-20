@@ -4,7 +4,7 @@
             <div class="col-lg-6 align-self-center">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="item">
+                        <div class="item item-1">
                             <h3>JOIN OUR LIBRARY</h3>
                             @auth
                                 <!-- If the user is logged in -->
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
-                        <div class="item">
+                        <div class="item item-2">
                             <h3>EXPLORE OUR CATALOG</h3>
                             <p>We have a diverse catalog of books in categories such as Fiction, Non-fiction, Science,
                                 Technology, and more. Start browsing now!</p>
