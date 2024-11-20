@@ -19,8 +19,8 @@
 @endif
 
 @section('content')
-
-    <section class="contact-us" id="contact" style="padding-top: 140px" <div class="container">
+<section class="heading-page header-text">
+    <section class="contact-us" id="contact" <div class="container">
         <div class="row">
             <div class="col-lg-9 align-self-center">
                 <div class="row">
@@ -90,5 +90,6 @@
         </div>
         </div>
     </section>
+</section>
 
 @endsection

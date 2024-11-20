@@ -30,11 +30,13 @@ class HomeController extends Controller
         $totalUsers = User::count();
         $totalBooks = Book::count();
         $totalCategories = Category::count();
-        $totalBorrowings = Borrowing::count();
+        $totalBorrowingsThisMonth = Borrowing::whereMonth('borrowed_at', now()->month)
+            ->whereYear('borrowed_at', now()->year)
+            ->count();
 
         // Fetch the first 10 books
         $books = Book::take(10)->get();
 
-        return view('user.home', compact('totalUsers', 'totalBooks', 'totalCategories', 'totalBorrowings', 'books'));
+        return view('user.home', compact('totalUsers', 'totalBooks', 'totalCategories', 'totalBorrowingsThisMonth', 'books'));
     }
 }

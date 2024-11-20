@@ -49,6 +49,11 @@
   .owl-carousel .owl-item img {
     display: block;
     width: 100%; }
+    .our-courses .owl-carousel .owl-item img {
+        height: 200px;
+        border-radius: 2rem 0 0;
+        object-fit: cover;
+    }
   .owl-carousel .owl-nav.disabled,
   .owl-carousel .owl-dots.disabled {
     display: none; }
