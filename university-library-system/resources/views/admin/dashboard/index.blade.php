@@ -113,20 +113,22 @@
                 </div>
             </div>
 
-            <!-- Active Users -->
+            <!-- Total Events -->
             <div class="col-sm-6 col-md-4">
-                <div class="card">
+                <div class="card card-stats card-round">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <h5><b>Active Users</b></h5>
-                                <p class="text-muted">Users who borrowed books</p>
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="fas fa-calendar"></i> <!-- Event Icon -->
+                                </div>
                             </div>
-                            <h3 class="text-success fw-bold">{{ $totalUsers - $newBorrowings }}</h3>
-                        </div>
-                        <div class="progress progress-sm">
-                            <div class="progress-bar bg-success w-60" role="progressbar" aria-valuenow="60"
-                                aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Total Events</p>
+                                    <h4 class="card-title">{{ $totalEvents }}</h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

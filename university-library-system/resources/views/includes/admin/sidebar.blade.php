@@ -145,6 +145,31 @@
                 </li>
 
                 <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#events" class="collapsed" aria-expanded="false">
+                        <i class="fas fa-calendar-alt"></i>
+                        <p>Events</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="events">
+                        <ul class="nav nav-collapse">
+                            <!-- Link to manage events (index) -->
+                            <li>
+                                <a href="{{ route('admin.events.index') }}">
+                                    <span class="sub-item">Manage Events</span>
+                                </a>
+                            </li>
+                            <!-- Link to add a new event -->
+                            <li>
+                                <a href="{{ route('admin.events.create') }}">
+                                    <span class="sub-item">Add New Event</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+                <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#contacts" class="collapsed" aria-expanded="false">
                         <i class="fas fa-envelope"></i>
                         <p>Contact Us</p>

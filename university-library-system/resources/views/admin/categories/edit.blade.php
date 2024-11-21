@@ -28,7 +28,7 @@
                             @endif
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Update Category</button>
+                        <button type="submit" class="btn btn-warning">Update Category</button>
                     </form>
                 </div>
             </div>

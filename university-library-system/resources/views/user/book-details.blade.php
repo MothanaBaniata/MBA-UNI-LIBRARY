@@ -4,33 +4,38 @@
 
 @section('content')
 
+    <!-- Heading Section -->
     <section class="heading-page header-text" id="top">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h6>Here are our resources</h6>
+                    <h6>Get all details</h6>
                     <h2>{{ $book->title }} - Book Details</h2>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="book-details-page" id="books">
+    <!-- Book Details Section -->
+    <section class="meetings-page" id="meetings">
         <div class="container">
-            <div class="row">
-                <!-- Book Image and Information -->
-                <div class="col-lg-12">
-                    <div class="row">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="meeting-single-item">
                         <!-- Book Image -->
-                        <div class="col-lg-6">
-                            <img src="{{ Storage::url($book->image) }}" alt="{{ $book->title }}" class="img-fluid rounded">
+                        <div class="thumb">
+                            <a href="#">
+                                <img src="{{ Storage::url($book->image) }}" alt="{{ $book->title }}"
+                                    class="img-fluid rounded">
+                            </a>
                         </div>
-
-                        <!-- Book Info -->
-                        <div class="col-lg-6">
+                        <!-- Book Information -->
+                        <div class="down-content text-center"> <!-- Add text-center to center the content -->
                             <h4>{{ $book->title }}</h4>
                             <p><strong>Author:</strong> {{ $book->author }}</p>
                             <p><strong>Category:</strong> {{ $book->category->name }}</p>
+
+                            <!-- Available Copies -->
                             <p><strong>Available Copies:</strong>
                                 @if ($book->total_copies - $book->borrowed_copies > 0)
                                     {{ $book->total_copies - $book->borrowed_copies }}
@@ -39,20 +44,30 @@
                                 @endif
                             </p>
 
-                            <p><strong>Description:</strong> {{ $book->description }}</p>
+                            <!-- Description -->
+                            <p><strong>Description:</strong> {{ $book->description }}</p><br>
 
-                            <!-- If user is logged in, show borrow button (optional) -->
+                            <!-- Borrow Button (if logged in and user is a student) -->
                             @auth
-                                {{-- <form method="POST" action="{{ route('user.borrow', $book->id) }}">
-                                @csrf
-                                <button type="submit" class="btn btn-primary">Borrow this Book</button>
-                            </form> --}}
+                                @if (auth()->user()->role === 'student')
+                                    <form method="POST" action="{{ route('user.borrow', $book->id) }}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-custom">Borrow this Book</button>
+                                        <!-- Custom class added -->
+                                    </form>
+                                @endif
                             @endauth
 
-                            <!-- If user is not logged in, show login suggestion -->
+                            <!-- Login Prompt (if not logged in) -->
                             @guest
                                 <p><a href="{{ route('login') }}">Log in</a> to borrow this book.</p>
                             @endguest
+                        </div>
+                        <!-- Back to Books List Button -->
+                        <div class="col-lg-12 text-center"> <!-- Center the "Back to Books List" button -->
+                            <div class="main-button-red">
+                                <a href="{{ route('user.categories') }}">Back to Books List</a>
+                            </div><br>
                         </div>
                     </div>
                 </div>

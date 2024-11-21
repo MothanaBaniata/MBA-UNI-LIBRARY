@@ -44,7 +44,7 @@
                         <input type="file" name="image" id="image" class="form-control">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Create Book</button>
                 </form>
             </div>
         </div>

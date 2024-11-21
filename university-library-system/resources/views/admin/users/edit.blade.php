@@ -43,7 +43,7 @@
                                 @endif
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="submit" class="btn btn-warning">Update</button>
                     </form>
                 </div>
             </div>

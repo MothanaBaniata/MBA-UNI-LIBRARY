@@ -70,43 +70,42 @@ class BookController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        // Validate the input
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'category_id' => 'required|exists:categories,id',
-            'author' => 'required|string|max:255',
-            'total_copies' => 'required|integer',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'category_id' => 'required|exists:categories,id',
+        'author' => 'required|string|max:255',
+        'total_copies' => 'required|integer',
+        'borrowed_copies' => 'nullable|integer', // Allow null or provide a default value later
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
 
-        // Find the book
-        $book = Book::findOrFail($id);
+    $book = Book::findOrFail($id);
 
-        // Handle the image upload if present
-        $imagePath = $book->image;
-        if ($request->hasFile('image')) {
-            // Delete the old image if it exists
-            if ($imagePath && Storage::exists($imagePath)) {
-                Storage::delete($imagePath);
-            }
-            $imagePath = $request->file('image')->store('public/books');
+    $imagePath = $book->image;
+    if ($request->hasFile('image')) {
+        if ($imagePath && Storage::exists($imagePath)) {
+            Storage::delete($imagePath);
         }
-
-        // Update the book
-        $book->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'category_id' => $request->category_id,
-            'author' => $request->author,
-            'total_copies' => $request->total_copies,
-            'borrowed_copies' => $request->borrowed_copies,
-            'image' => $imagePath,
-        ]);
-
-        return redirect()->route('admin.books.index')->with('success', 'Book updated successfully.');
+        $imagePath = $request->file('image')->store('public/books');
     }
+
+    $borrowedCopies = $request->has('borrowed_copies') ? $request->borrowed_copies : 0;
+
+    $book->update([
+        'title' => $request->title,
+        'description' => $request->description,
+        'category_id' => $request->category_id,
+        'author' => $request->author,
+        'total_copies' => $request->total_copies,
+        'borrowed_copies' => $borrowedCopies,
+        'image' => $imagePath,
+    ]);
+
+    return redirect()->route('admin.books.index')->with('success', 'Book updated successfully.');
+}
+
 
     public function destroy($id)
     {

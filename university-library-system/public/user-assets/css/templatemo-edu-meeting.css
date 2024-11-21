@@ -2205,3 +2205,28 @@ Auth styling
 .btn-link:hover {
     color: #7f2023;
 }
+
+
+/* Custom style for Borrow button */
+.btn-custom {
+    background-color: #a12c2f; /* Example: Red background color */
+    color: #fff; /* White text */
+    border: 2px solid #a12c2f; /* Red border */
+    padding: 10px 25px; /* Custom padding */
+    font-size: 16px; /* Adjust font size */
+    font-weight: bold; /* Bold text */
+    border-radius: 5px; /* Rounded corners */
+    text-transform: uppercase; /* Uppercase text */
+    transition: all 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Hover effect for the custom button */
+.btn-custom:hover {
+    background-color: #fff; /* White background on hover */
+    color: #a12c2f; /* Red text on hover */
+    border-color: #fff; /* White border on hover */
+}
+.header-logo {
+    max-width: 75px;  /* Adjust this value based on the desired width */
+    height: auto;      /* Maintain aspect ratio */
+}

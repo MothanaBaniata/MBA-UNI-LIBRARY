@@ -33,7 +33,7 @@
                                 <option value="superadmin">Superadmin</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-success">Create Admin/Superadmin</button>
+                        <button type="submit" class="btn btn-primary">Create Admin</button>
                     </form>
                 </div>
             </div>

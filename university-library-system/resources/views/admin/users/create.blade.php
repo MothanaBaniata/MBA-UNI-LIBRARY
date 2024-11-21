@@ -30,7 +30,7 @@
                         <!-- The role is hardcoded as 'student' for admins -->
                         <input type="hidden" name="role" value="student">
 
-                        <button type="submit" class="btn btn-success">Create Student</button>
+                        <button type="submit" class="btn btn-primary">Create Student</button>
                     </form>
                 </div>
             </div>

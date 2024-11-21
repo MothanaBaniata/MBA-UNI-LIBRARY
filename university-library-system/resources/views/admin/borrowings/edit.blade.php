@@ -40,7 +40,7 @@
                         <input type="date" name="due_date" id="due_date" class="form-control" value="{{ $borrowing->due_date }}" required>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Update Borrowing</button>
+                    <button type="submit" class="btn btn-warning">Update Borrowing</button>
                 </form>
             </div>
         </div>

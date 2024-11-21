@@ -36,7 +36,7 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <!-- Service 1: Book Borrowing -->
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 mb-5">
                             <div class="meeting-single-item d-flex flex-column">
                                 <div class="thumb">
                                     <img src="user-assets/images/course-01.jpg" alt="Book Borrowing">
@@ -46,16 +46,16 @@
                                     <p>Find and borrow textbooks, novels, reference materials, and more. Our system
                                         makes it simple to search and borrow books from the library collection.</p>
                                     <div class="main-button-red">
-                                        <a href="#">Browse the Collection</a>
+                                        <a href="{{ route('user.categories') }}">Browse the Collection</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- Service 2: Research Resources -->
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 mb-5">
                             <div class="meeting-single-item d-flex flex-column">
                                 <div class="thumb">
-                                    <img src="user-assets/images/course-01.jpg" alt="Research Resources">
+                                    <img src="user-assets/images/course-02.jpg" alt="Research Resources">
                                 </div>
                                 <div class="down-content">
                                     <h4>Research Resources</h4>
@@ -63,7 +63,7 @@
                                         projects. Our online database helps you find reliable research materials
                                         quickly.</p>
                                     <div class="main-button-red">
-                                        <a href="#">Explore Research Tools</a>
+                                        <a href="{{ route('user.categories') }}">Explore Research Tools</a>
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                         <div class="col-lg-4">
                             <div class="meeting-single-item d-flex flex-column">
                                 <div class="thumb">
-                                    <img src="user-assets/images/course-01.jpg" alt="Study Areas">
+                                    <img src="user-assets/images/course-03.jpg" alt="Study Areas">
                                 </div>
                                 <div class="down-content">
                                     <h4>Study Areas & Spaces</h4>
@@ -80,7 +80,7 @@
                                         spaces. Whether you’re studying solo or with a group, we have the perfect
                                         environment for you.</p>
                                     <div class="main-button-red">
-                                        <a href="#">View Study Areas</a>
+                                        <a href="{{ route('user.categories') }}">View Study Areas</a>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
                             </div>
                             <div class="down-content">
 
-                                <h3>Why Choose Our Library?</h3>
+                                <h3>Why Choose Our Library?</h3><br>
                                 <p>We are committed to providing students, faculty, and staff with the best resources to
                                     ensure a thriving academic environment. Our library system is built to meet the
                                     growing needs of our university community.</p>
@@ -106,7 +106,7 @@
                                 <!-- Back Button to List or Other Pages -->
                                 <div class="col-lg-12 mt-5">
                                     <div class="main-button-red">
-                                        <a href="library-collection.html">Browse Full Collection</a>
+                                        <a href="{{ route('user.categories') }}">Browse Full Collection</a>
                                     </div>
                                 </div>
                             </div>

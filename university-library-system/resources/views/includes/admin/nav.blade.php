@@ -1,5 +1,4 @@
 <!-- resources/views/includes/admin/nav.blade.php -->
-
 <div class="main-header">
     <div class="main-header-logo">
         <!-- Logo Header -->
@@ -25,14 +24,23 @@
     <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
         <div class="container-fluid">
             <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <button type="submit" class="btn btn-search pe-1">
-                            <i class="fa fa-search search-icon"></i>
-                        </button>
+                <form action="{{ route('admin.search') }}" method="GET" class="w-100">
+                    <div class="input-group" style="width: 300px;"> <!-- Increased width here -->
+                        <div class="input-group-prepend">
+                            <button type="submit" class="btn btn-search pe-1">
+                                <i class="fa fa-search search-icon"></i>
+                            </button>
+                        </div>
+                        <input type="text" name="query" placeholder="Search (users, books, etc.)" class="form-control" value="{{ request()->input('query') }}" />
                     </div>
-                    <input type="text" placeholder="Search ..." class="form-control" />
-                </div>
+
+                    <!-- Display validation error if query is too short -->
+                    @if($errors->has('query'))
+                        <div class="text-danger mt-1">
+                            {{ $errors->first('query') }}
+                        </div>
+                    @endif
+                </form>
             </nav>
         </div>
     </nav>
