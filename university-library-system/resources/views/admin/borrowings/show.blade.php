@@ -13,6 +13,7 @@
                 <p><strong>Borrowed At:</strong> {{ $borrowing->borrowed_at }}</p>
                 <p><strong>Due Date:</strong> {{ $borrowing->due_date }}</p>
                 <p><strong>Returned At:</strong> {{ $borrowing->returned_at ?? 'Not Returned' }}</p>
+                <a href="{{ route('admin.borrowings.index') }}" class="btn btn-primary mt-3">Back to Borrowings</a>
             </div>
         </div>
     </div>

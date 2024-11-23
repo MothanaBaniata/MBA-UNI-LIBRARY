@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Borrowing;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Event;
 
 class DashboardController extends Controller
 {
@@ -18,10 +19,10 @@ class DashboardController extends Controller
         $totalCategories = Category::count();
         $totalBooks = Book::count();
         $totalBorrowings = Borrowing::count();
+        $totalEvents = Event::count();
         $newBorrowings = Borrowing::where('created_at', '>=', now()->subDays(30))->count();
 
         // Passing data to view
-        return view('admin.dashboard.index', compact('totalUsers', 'totalCategories', 'totalBooks', 'totalBorrowings', 'newBorrowings'));
+        return view('admin.dashboard.index', compact('totalUsers', 'totalCategories', 'totalBooks', 'totalBorrowings', 'newBorrowings','totalEvents'));
     }
 }
-

@@ -28,7 +28,8 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{{ url('/') }}" class="logo">
-                        Library
+                        {{-- Library --}}
+                        <img src="user-assets/images/library.jpg" alt="Logo" class="header-logo">
                     </a>
                     <!-- ***** Logo End ***** -->
 

@@ -13,7 +13,7 @@
                         <li><strong>Email:</strong> {{ $user->email }}</li>
                         <li><strong>Created At:</strong> {{ $user->created_at->format('Y-m-d') }}</li>
                     </ul>
-                    <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Back to Students</a>
+                    <a href="{{ route('admin.users.index') }}" class="btn btn-primary">Back to Students</a>
                 </div>
             </div>
         </div>

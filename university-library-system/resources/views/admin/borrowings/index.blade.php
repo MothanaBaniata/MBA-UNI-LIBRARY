@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title">Borrowings</h4>
                 <a href="{{ route('admin.borrowings.create') }}" class="btn btn-primary">Add New Borrowing</a>
             </div>

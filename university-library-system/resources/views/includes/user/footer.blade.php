@@ -15,7 +15,7 @@
                     <li><a href="{{ route('user.categories') }}" class="text-white py-1 link-hover">Categories</a></li>
                     <li><a href="{{ url('about') }}" class="text-white py-1 link-hover">About Us</a></li>
                     <li><a href="{{ route('contact.show') }}" class="text-white py-1 link-hover">Contact Us</a></li>
-                    <li><a href="#apply-now" class="text-white py-1 link-hover">FAQs</a></li>
+                    <li><a href="#apply" class="text-white py-1 link-hover">FAQs</a></li>
                 </ul>
             </div>
 

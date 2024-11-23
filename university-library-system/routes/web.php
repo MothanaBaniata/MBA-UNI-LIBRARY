@@ -12,7 +12,8 @@ use App\Http\Controllers\User\UserBookController;
 use App\Http\Controllers\User\UserCategoryController;
 use App\Http\Controllers\User\UserContactController;
 use App\Http\Controllers\Admin\AdminController;
-
+use App\Http\Controllers\Admin\AdminSearchController;
+use App\Http\Controllers\Admin\EventController;
 
 Auth::routes();
 
@@ -61,8 +62,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.role'])->grou
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.role'])->group(function () {
     Route::resource('contacts', ContactController::class)->only(['index', 'show', 'destroy']);
 });
-/****************** Admin routes end ******************/
+Route::prefix('admin')->name('admin.')->middleware('auth', 'admin.role')->group(function () {
+    Route::resource('events', EventController::class);
+});
 
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.role'])->group(function () {
+    Route::get('/search', [AdminSearchController::class, 'search'])->name('search');
+});
+/****************** Admin routes end ******************/
+Route::resource('events', EventController::class);
 
 /****************** User routes start ******************/
 Route::get('/contact', [UserContactController::class, 'showForm'])->name('contact.show');
@@ -87,4 +95,9 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
+Route::middleware(['auth', 'student'])->group(function () {
+
+    Route::post('/book/{book}/borrow', [UserBookController::class, 'borrow'])->name('user.borrow');
+});
+
 /****************** User routes end ******************/

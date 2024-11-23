@@ -28,21 +28,7 @@
                             @foreach ($categories as $category)
                                 <li data-filter=".{{ strtolower($category->name) }}">{{ $category->name }}</li>
                             @endforeach
-
-                            <!-- Dropdown to select a category -->
-
-                            <form method="GET" action="{{ route('user.categories') }}">
-                                <select class="custom-select" id="categoryDropdown" name="category"
-                                    onchange="this.form.submit()">
-                                    <option value="">Select Category</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}"
-                                            {{ request('category') == $category->id ? 'selected' : '' }}>
-                                            {{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </form>
-
+                            <br><br><br>
                             <!-- Search field for books -->
                             <li>
                                 <form method="GET" action="{{ route('user.categories') }}">
@@ -65,7 +51,7 @@
                                             <span>{{ $book->category->name }}</span>
                                         </div>
                                         <a href="{{ route('user.book.show', $book->id) }}">
-                                            <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
+                                            <img src="{{ Storage::url($book->image) }}" alt="{{ $book->title }}">
                                         </a>
                                     </div>
                                     <div class="down-content">

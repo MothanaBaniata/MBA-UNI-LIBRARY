@@ -25,7 +25,7 @@
                                 <tr>
                                     <td>
                                         @if($category->image)
-                                        <img src="{{ asset('storage/app/public' . $category->image) }}" alt="{{ $category->name }}" width="50" class="img-thumbnail">
+                                        <img src="{{ Storage::url($category->image) }}" alt="{{ $category->name }}" width="50" class="img-thumbnail">
 
                                         @else
                                         <span>No image</span>
