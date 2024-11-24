@@ -40,11 +40,24 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.role'])->grou
 
 /****************** Admin routes start ******************/
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.role'])->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    // Standard User CRUD routes
+    Route::resource('users', UserController::class);
+
+    // Route for listing deleted
+    Route::get('/deleted', [UserController::class, 'deletedUsers'])
+        ->name('users.deleted');
+
+    Route::patch('/users/{id}/restore', [UserController::class, 'restore'])
+        ->name('users.restore');
+
+    Route::delete('/users/{id}/force-delete', [UserController::class, 'forceDelete'])
+        ->name('users.forceDelete');
 });
 
+
+
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.role'])->group(function () {
-    Route::resource('users', UserController::class);
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin.role'])->group(function () {

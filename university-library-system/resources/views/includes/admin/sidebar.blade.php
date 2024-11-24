@@ -49,16 +49,18 @@
                     </a>
                     <div class="collapse" id="students">
                         <ul class="nav nav-collapse">
-                            <!-- Manage Students -->
-                            <li><a href="{{ route('admin.users.index') }}"><span class="sub-item">Manage
-                                        Students</span></a></li>
+                            <!-- Manage Students (active) -->
+                            <li><a href="{{ route('admin.users.index') }}"><span class="sub-item">Manage Active Students</span></a></li>
+
+                            <!-- Soft Deleted Students -->
+                            <li><a href="{{ route('admin.users.deleted') }}"><span class="sub-item">Manage Deleted Students</span></a></li>
 
                             <!-- Add New Student -->
-                            <li><a href="{{ route('admin.users.create') }}"><span class="sub-item">Add New
-                                        Student</span></a></li>
+                            <li><a href="{{ route('admin.users.create') }}"><span class="sub-item">Add New Student</span></a></li>
                         </ul>
                     </div>
                 </li>
+
 
                 @if (auth()->user()->role === 'superadmin')
                     <!-- Only show for superadmins -->

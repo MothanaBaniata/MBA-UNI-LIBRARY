@@ -27,12 +27,9 @@
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->created_at->format('Y-m-d') }}</td>
                                             <td>
-                                                <a href="{{ route('admin.users.show', $user->id) }}"
-                                                    class="btn btn-info btn-sm">View</a>
-                                                <a href="{{ route('admin.users.edit', $user->id) }}"
-                                                    class="btn btn-warning btn-sm">Edit</a>
-                                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST"
-                                                    style="display:inline;">
+                                                <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-info btn-sm">View</a>
+                                                <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline;" class="delete-form">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -49,3 +46,51 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <!-- SweetAlert2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.querySelectorAll('.delete-form').forEach(function(form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const form = this;
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'This user will be deleted!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
+
+    @if(session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+                timer: 3000,
+                showConfirmButton: false
+            });
+        </script>
+    @elseif(session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: '{{ session('error') }}',
+                timer: 3000,
+                showConfirmButton: false
+            });
+        </script>
+    @endif
+@endpush

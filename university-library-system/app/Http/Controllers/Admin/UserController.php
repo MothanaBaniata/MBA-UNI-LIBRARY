@@ -13,10 +13,16 @@ class UserController extends Controller
         if (auth()->user()->role === 'superadmin') {
             $users = User::where('role', 'student')->get();
         } else {
-            $users = User::where('role', 'student')->get();
+            $users = User::where('role', 'student')->whereNull('deleted_at')->get();
         }
         return view('admin.users.index', compact('users'));
     }
+
+    public function deletedUsers()
+{
+    $users = User::onlyTrashed()->where('role', 'student')->get();
+    return view('admin.users.deleted', compact('users'));
+}
 
     public function create()
     {
@@ -74,11 +80,9 @@ class UserController extends Controller
             'role' => auth()->user()->role === 'admin' ? 'required|in:student' : 'required|in:superadmin,admin,student',
         ]);
 
-        // Update user details
         $user->name = $request->name;
         $user->email = $request->email;
 
-        // Update password only if provided
         if ($request->filled('password')) {
             $user->password = bcrypt($request->password);
         }
@@ -87,6 +91,26 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('admin.users.index')->with('success', 'User updated successfully');
     }
+
+
+    public function restore($id)
+    {
+        $user = User::withTrashed()->findOrFail($id);
+
+        $user->restore();
+
+        return redirect()->route('admin.users.index')->with('success', 'User restored successfully');
+    }
+
+    public function forceDelete($id)
+    {
+        $user = User::withTrashed()->findOrFail($id);
+
+        $user->forceDelete();
+
+        return redirect()->route('admin.users.index')->with('success', 'User permanently deleted');
+    }
+
 
     public function destroy($id)
     {

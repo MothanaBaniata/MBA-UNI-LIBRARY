@@ -11,6 +11,13 @@
                 <div class="col-lg-12">
                     <h6>Get all details</h6>
                     <h2>{{ $book->title }} - Book Details</h2>
+
+                    <!-- Display Success Message -->
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -48,13 +55,19 @@
                             <p><strong>Description:</strong> {{ $book->description }}</p><br>
 
                             <!-- Borrow Button (if logged in and user is a student) -->
+                            <!-- Borrow Button (if logged in and user is a student) -->
                             @auth
                                 @if (auth()->user()->role === 'student')
-                                    <form method="POST" action="{{ route('user.borrow', $book->id) }}">
-                                        @csrf
-                                        <button type="submit" class="btn btn-custom">Borrow this Book</button>
-                                        <!-- Custom class added -->
-                                    </form>
+                                    @if ($book->total_copies - $book->borrowed_copies > 0)
+                                        <!-- If there are available copies, show the Borrow button -->
+                                        <form method="POST" action="{{ route('user.borrow', $book->id) }}">
+                                            @csrf
+                                            <button type="submit" class="btn btn-custom">Borrow this Book</button>
+                                        </form>
+                                    @else
+                                        <!-- If no copies are available, show the Unavailable message -->
+                                        <button type="button" class="btn btn-danger" disabled>Currently Unavailable</button>
+                                    @endif
                                 @endif
                             @endauth
 
@@ -62,6 +75,7 @@
                             @guest
                                 <p><a href="{{ route('login') }}">Log in</a> to borrow this book.</p>
                             @endguest
+
                         </div>
                         <!-- Back to Books List Button -->
                         <div class="col-lg-12 text-center"> <!-- Center the "Back to Books List" button -->
